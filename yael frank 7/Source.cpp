@@ -70,7 +70,7 @@ void update(std::fstream& file, int index, std::queue<Family>& waitingQueue) {
     bool clubs[6];
 
     for (int i = 0; i < 6; i++) {
-        cout << "Enter true/false (1/0) for club number: " << i + 1 << endl;
+        cout << "Enter true/false (1/0) for club number:  " << i + 1 << endl;
         cin >> clubs[i];
     }
     bool flug = false;
@@ -92,7 +92,7 @@ void update(std::fstream& file, int index, std::queue<Family>& waitingQueue) {
             }
             else {
                 
-                cout << "there is more then 10";
+                cout << "there is more then 10 to club number: "<<i<<endl;
                 existingFamily.activeClabs[i] = false;
                 flug = true;
             }
@@ -138,8 +138,20 @@ void waiting(std::fstream& file, std::queue<Family>& waitingQueue)
                     }
                 }
                 if (countOnClub < 10) {
-                    existingFamily.activeClabs[i] = true;
-                    waitingFamily.activeClabs[i] = false;
+                    cout << "family: " << existingFamily.familyName << endl;
+                    cout << "Do you want to enter the class number " <<i<<" Y/N " <<endl;
+                    char c;
+                    cin >> c;
+                    if (c == 'y' || c == 'Y')
+
+                    {
+                        existingFamily.activeClabs[i] = true;
+                        waitingFamily.activeClabs[i] = false;
+                    }
+                    else {
+                        existingFamily.activeClabs[i] = false;
+                        flug = true;
+                    }
                 }
                 else {
                     //צריך להשאר בתור עדיין כי יש חוג שעדיין לא מצליח להכנס אליו
